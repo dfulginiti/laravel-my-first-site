@@ -65,7 +65,9 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+
+        return view('project.edit', compact('project'));
     }
 
     /**
@@ -75,9 +77,17 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        /** @var Project $project */
+        $project = Project::find($id);
+
+        $project->title = request('title');
+        $project->description = request('description');
+
+        $project->save();
+
+        return redirect("/projects");
     }
 
     /**
