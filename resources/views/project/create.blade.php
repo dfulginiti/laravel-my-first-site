@@ -1,29 +1,29 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Projects</title>
-</head>
-<body>
-    <h1>Create a new project</h1>
+@extends('layouts.app')
+
+@section('content')
+    <h1 class="title">Create a new project</h1>
 
     <form method="post" action="/projects">
         @csrf
 
-        <div>
-            <input type="text" name="title" placeholder="Project title">
+        <div class="field">
+            <label class="label" for="title">Title</label>
+
+            <div class="control">
+                <input type="text" class="input" name="title" placeholder="Project title">
+            </div>
         </div>
 
-        <div>
-            <textarea name="description" placeholder="Project description"></textarea>
+        <div class="field">
+            <label class="label" for="description">Description</label>
+
+            <textarea class="input" name="description" placeholder="Project description"></textarea>
         </div>
 
-        <div>
-            <button type="submit">Create Project</button>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-link">Create Project</button>
+            </div>
         </div>
     </form>
-</body>
-</html>
+@endsection
