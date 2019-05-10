@@ -10,14 +10,14 @@
             <label class="label" for="title">Title</label>
 
             <div class="control">
-                <input type="text" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" name="title" placeholder="Project title" value="{{ old('title') }}">
+                <input type="text" class="input {{ $errors->has('title') ? 'is-danger' : '' }}" name="title" placeholder="Project title" value="{{ old('title') }}" required>
             </div>
         </div>
 
         <div class="field">
             <label class="label" for="description">Description</label>
 
-            <textarea class="input {{ $errors->has('description') ? 'is-danger' : '' }}" name="description" placeholder="Project description">{{ old('description') }}</textarea>
+            <textarea class="input {{ $errors->has('description') ? 'is-danger' : '' }}" name="description" placeholder="Project description" required>{{ old('description') }}</textarea>
         </div>
 
         <div class="field">
