@@ -7,7 +7,7 @@ Route::get('/', 'ProjectController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 
-Route::resource('projects', 'ProjectController');
+Route::resource('projects', 'ProjectController')->middleware('auth');
 
 Route::post('/projects/{project}/tasks/', 'ProjectTaskController@store');
 Route::patch('/tasks/{task}', 'ProjectTaskController@update');
