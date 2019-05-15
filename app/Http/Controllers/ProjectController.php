@@ -42,7 +42,7 @@ class ProjectController extends Controller
             'description' => ['required', 'min:3']
         ]);
 
-        Project::create($attributes);
+        Project::create($attributes + ['owner_id' => auth()->id()]);
 
         return redirect('/projects');
     }
