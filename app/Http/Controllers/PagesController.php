@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
     public function home()
     {
-        $tasks = [
-            'Go to the store',
-            'Walk the dog',
-            'Pick up food for later'
-        ];
-
-        return view('home')->withTasks($tasks);
+        return view('home')->withProjects(Project::all());
     }
 
     /**
