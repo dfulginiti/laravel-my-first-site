@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -53,9 +54,12 @@ class ProjectController extends Controller
      * @param Project $project
      *
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function show(Project $project)
     {
+        $this->authorize('update', $project);
+
         return view('project.show', compact('project'));
     }
 
@@ -76,10 +80,13 @@ class ProjectController extends Controller
      *
      * @param  Project  $project
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function update(Project $project)
     {
-        Project::update(request(['title', 'description']));
+        $this->authorize('update', $project);
+
+        $project->update(request(['title', 'description']));
 
         return redirect("/projects");
     }

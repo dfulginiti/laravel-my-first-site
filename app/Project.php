@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ * @property int id
+ * @property int owner_id
  * @property string title
  * @property string description
  */
