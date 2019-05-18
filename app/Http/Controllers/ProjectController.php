@@ -33,17 +33,11 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $attributes = request()->validate([
-            'title'       => ['required', 'min:3'],
-            'description' => ['required', 'min:3']
-        ]);
-
-        Project::create($attributes + ['owner_id' => auth()->id()]);
+        Project::create($this->validateProject() + ['owner_id' => auth()->id()]);
 
         return redirect('/projects');
     }
@@ -86,7 +80,7 @@ class ProjectController extends Controller
     {
         $this->authorize('update', $project);
 
-        $project->update(request(['title', 'description']));
+        $project->update($this->validateProject());
 
         return redirect("/projects");
     }
@@ -104,5 +98,16 @@ class ProjectController extends Controller
         $project->delete();
 
         return redirect('/projects');
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function validateProject()
+    {
+        return request()->validate([
+            'title'       => ['required', 'min:3'],
+            'description' => ['required', 'min:3']
+        ]);
     }
 }
