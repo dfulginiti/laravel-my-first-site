@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * @property int id
+ * @property HasMany|Project[] projects
  */
 class User extends Authenticatable
 {
