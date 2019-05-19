@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ProjectCreated;
 use App\Project;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -37,7 +38,9 @@ class ProjectController extends Controller
      */
     public function store()
     {
-        Project::create($this->validateProject() + ['owner_id' => auth()->id()]);
+        $project = Project::create($this->validateProject() + ['owner_id' => auth()->id()]);
+
+        Mail::to($project->owner->email)->send(new ProjectCreated($project));
 
         return redirect('/projects');
     }

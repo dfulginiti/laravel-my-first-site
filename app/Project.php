@@ -14,6 +14,11 @@ class Project extends Model
 {
     protected $guarded = ['id'];
 
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
